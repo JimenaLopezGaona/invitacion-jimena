@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet" />
   <style>
-    /* Estilos generales optimizados para iPhone */
     * {
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
@@ -131,8 +130,7 @@
     .map-button:active, .confirm-button:active {
       transform: scale(0.96);
     }
-    
-    /* Estilos del modal ultra compacto */
+
     .modal {
       position: fixed;
       top: 0;
@@ -284,9 +282,9 @@
           Estrella 38, San Juan Xalpa,<br />
           Iztapalapa, 09850 Ciudad de México, CDMX
         </div>
-        <a class="map-button" href="#" onclick="getLocationAndNavigate('Estrella 38, San Juan Xalpa, Iztapalapa, 09850 Ciudad de México, CDMX')">
+        <button type="button" class="map-button" onclick="getLocationAndNavigate('Estrella 38, San Juan Xalpa, Iztapalapa, 09850 Ciudad de México, CDMX', event)">
           Cómo llegar
-        </a>
+        </button>
       </div>
 
       <!-- Recepción -->
@@ -298,16 +296,16 @@
           5 de Mayo núm. 31, Col. Los Reyes Culhuacán,<br />
           Iztapalapa, Ciudad de México, CDMX
         </div>
-        <a class="map-button" href="#" onclick="getLocationAndNavigate('5 de Mayo 31, Amp. Los Reyes, Iztapalapa, 09840 Ciudad de México, CDMX')">
+        <button type="button" class="map-button" onclick="getLocationAndNavigate('5 de Mayo 31, Amp. Los Reyes, Iztapalapa, 09840 Ciudad de México, CDMX', event)">
           Cómo llegar
-        </a>
+        </button>
       </div>
 
       <button class="confirm-button" onclick="openModal()">Confirma asistencia</button>
     </div>
   </div>
 
-  <!-- Modal con RSVP -->
+  <!-- Modal RSVP -->
   <div id="rsvpModal" class="modal">
     <div class="modal-content">
       <button class="close-modal" onclick="closeModal()">&times;</button>
@@ -332,7 +330,7 @@
     </div>
   </div>
 
-  <!-- Firebase & Scripts -->
+  <!-- Scripts -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <script>
@@ -348,8 +346,13 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    function getLocationAndNavigate(destination) {
+    function getLocationAndNavigate(destination, event) {
+      if (event) event.preventDefault();
       const encodedDest = encodeURIComponent(destination);
+
+      const openMap = (url) => {
+        setTimeout(() => window.open(url, '_blank'), 100);
+      };
 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -357,11 +360,11 @@
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
             const mapsURL = `https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${encodedDest}&travelmode=driving`;
-            window.open(mapsURL, '_blank');
+            openMap(mapsURL);
           },
           () => {
             const fallbackURL = `https://www.google.com/maps/search/?api=1&query=${encodedDest}`;
-            window.open(fallbackURL, '_blank');
+            openMap(fallbackURL);
           },
           {
             enableHighAccuracy: true,
@@ -371,13 +374,12 @@
         );
       } else {
         const fallbackURL = `https://www.google.com/maps/search/?api=1&query=${encodedDest}`;
-        window.open(fallbackURL, '_blank');
+        openMap(fallbackURL);
       }
     }
 
     function openModal() {
-      const modal = document.getElementById("rsvpModal");
-      modal.classList.add("active");
+      document.getElementById("rsvpModal").classList.add("active");
       document.body.style.overflow = "hidden";
     }
 
@@ -438,13 +440,7 @@
     document.addEventListener("DOMContentLoaded", function () {
       const inputs = document.querySelectorAll("input");
       inputs.forEach((input) => {
-        input.addEventListener(
-          "touchstart",
-          function (e) {
-            e.stopPropagation();
-          },
-          { passive: true }
-        );
+        input.addEventListener("touchstart", (e) => e.stopPropagation(), { passive: true });
         input.addEventListener("focus", function () {
           this.scrollIntoView({ behavior: "smooth", block: "center" });
         });
