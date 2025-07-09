@@ -347,36 +347,41 @@
     const db = firebase.firestore();
 
     function getLocationAndNavigate(destination, event) {
-      if (event) event.preventDefault();
-      const encodedDest = encodeURIComponent(destination);
+  if (event) event.preventDefault();
 
-      const openMap = (url) => {
-        setTimeout(() => window.open(url, '_blank'), 100);
-      };
+  const encodedDest = encodeURIComponent(destination);
 
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const lat = position.coords.latitude;
-            const lng = position.coords.longitude;
-            const mapsURL = `https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${encodedDest}&travelmode=driving`;
-            openMap(mapsURL);
-          },
-          () => {
-            const fallbackURL = `https://www.google.com/maps/search/?api=1&query=${encodedDest}`;
-            openMap(fallbackURL);
-          },
-          {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0,
-          }
-        );
-      } else {
+  // Abre ventana emergente inmediatamente para evitar bloqueo en Safari
+  const newWindow = window.open('about:blank');
+
+  if (!newWindow) {
+    alert('Por favor permite ventanas emergentes para usar esta función.');
+    return;
+  }
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        const mapsURL = `https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${encodedDest}&travelmode=driving`;
+        newWindow.location = mapsURL;
+      },
+      () => {
         const fallbackURL = `https://www.google.com/maps/search/?api=1&query=${encodedDest}`;
-        openMap(fallbackURL);
+        newWindow.location = fallbackURL;
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0,
       }
-    }
+    );
+  } else {
+    const fallbackURL = `https://www.google.com/maps/search/?api=1&query=${encodedDest}`;
+    newWindow.location = fallbackURL;
+  }
+}
 
     function openModal() {
       document.getElementById("rsvpModal").classList.add("active");
