@@ -284,7 +284,9 @@
           Estrella 38, San Juan Xalpa,<br />
           Iztapalapa, 09850 Ciudad de México, CDMX
         </div>
-        <button class="map-button" onclick="getLocationAndNavigate('Estrella 38, San Juan Xalpa, Iztapalapa, 09850 Ciudad de México, CDMX')">Cómo llegar</button>
+        <a class="map-button" href="#" onclick="getLocationAndNavigate('Estrella 38, San Juan Xalpa, Iztapalapa, 09850 Ciudad de México, CDMX')">
+          Cómo llegar
+        </a>
       </div>
 
       <!-- Recepción -->
@@ -296,14 +298,16 @@
           5 de Mayo núm. 31, Col. Los Reyes Culhuacán,<br />
           Iztapalapa, Ciudad de México, CDMX
         </div>
-        <button class="map-button" onclick="getLocationAndNavigate('Salón+de+Fiestas+El+Arca+de+los+Niños,+8WP9+MV,+Ciudad+de+México')">Cómo llegar</button>
+        <a class="map-button" href="#" onclick="getLocationAndNavigate('5 de Mayo 31, Amp. Los Reyes, Iztapalapa, 09840 Ciudad de México, CDMX')">
+          Cómo llegar
+        </a>
       </div>
 
       <button class="confirm-button" onclick="openModal()">Confirma asistencia</button>
     </div>
   </div>
 
-  <!-- Modal con labels externos -->
+  <!-- Modal con RSVP -->
   <div id="rsvpModal" class="modal">
     <div class="modal-content">
       <button class="close-modal" onclick="closeModal()">&times;</button>
@@ -328,6 +332,7 @@
     </div>
   </div>
 
+  <!-- Firebase & Scripts -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <script>
@@ -344,34 +349,19 @@
     const db = firebase.firestore();
 
     function getLocationAndNavigate(destination) {
+      const encodedDest = encodeURIComponent(destination);
+
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
-            // Intentar abrir en app Google Maps con origen y destino
-            const appUrl = `comgooglemaps://?saddr=${lat},${lng}&daddr=${encodeURIComponent(destination)}&directionsmode=driving`;
-            // Abrir app
-            window.location = appUrl;
-            // Fallback abrir en web tras 800ms
-            setTimeout(() => {
-              window.open(
-                `https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${encodeURIComponent(
-                  destination
-                )}&travelmode=driving`,
-                "_blank"
-              );
-            }, 800);
+            const mapsURL = `https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${encodedDest}&travelmode=driving`;
+            window.open(mapsURL, '_blank');
           },
-          (error) => {
-            console.error("Error obteniendo ubicación:", error);
-            // Abrir sólo destino en navegador si no hay ubicación
-            window.open(
-              `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                destination
-              )}`,
-              "_blank"
-            );
+          () => {
+            const fallbackURL = `https://www.google.com/maps/search/?api=1&query=${encodedDest}`;
+            window.open(fallbackURL, '_blank');
           },
           {
             enableHighAccuracy: true,
@@ -380,13 +370,8 @@
           }
         );
       } else {
-        // Si no soporta geolocalización, abrir sólo destino en navegador
-        window.open(
-          `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-            destination
-          )}`,
-          "_blank"
-        );
+        const fallbackURL = `https://www.google.com/maps/search/?api=1&query=${encodedDest}`;
+        window.open(fallbackURL, '_blank');
       }
     }
 
@@ -415,25 +400,15 @@
 
     document.getElementById("rsvpForm").addEventListener("submit", function (e) {
       e.preventDefault();
-
       const name = document.getElementById("name").value.trim();
       const adults = parseInt(document.getElementById("adults").value);
       const children = parseInt(document.getElementById("children").value);
       const userAgent = navigator.userAgent;
       const screenSize = `${window.innerWidth}x${window.innerHeight}`;
 
-      if (name.length < 3) {
-        alert("Por favor ingresa tu nombre completo");
-        return;
-      }
-      if (adults < 1) {
-        alert("Debe haber al menos 1 adulto");
-        return;
-      }
-      if (children < 0) {
-        alert("El número de niños no puede ser negativo");
-        return;
-      }
+      if (name.length < 3) return alert("Por favor ingresa tu nombre completo");
+      if (adults < 1) return alert("Debe haber al menos 1 adulto");
+      if (children < 0) return alert("El número de niños no puede ser negativo");
 
       document.getElementById("loadingSpinner").style.display = "block";
 
@@ -470,7 +445,6 @@
           },
           { passive: true }
         );
-
         input.addEventListener("focus", function () {
           this.scrollIntoView({ behavior: "smooth", block: "center" });
         });
