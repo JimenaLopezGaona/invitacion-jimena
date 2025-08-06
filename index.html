@@ -7,18 +7,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet" />
   <style>
-    /* Estilos generales optimizados para iPhone */
+    /* Paleta de colores armonizada */
+    :root {
+      --color-primario: #7a5a80;    /* Morado principal */
+      --color-secundario: #b282a7;  /* Morado medio (nuevo color de fondo para ceremonia) */
+      --color-terciario: #d1b3d8;   /* Morado claro */
+      --color-fondo: #f9f5f1;       /* Fondo blanco crema */
+      --color-texto: #4a3a4f;       /* Texto principal oscuro */
+      --color-texto-claro: #7a6a7a; /* Texto secundario */
+      --color-borde: #e0d0e3;       /* Borde claro */
+      --color-sombra: rgba(122, 90, 128, 0.1); /* Sombra suave */
+      --color-boton: #8e6c88;       /* Color para botones */
+      --color-boton-hover: #9a7b94; /* Color hover para botones */
+    }
+
+    /* Estilos generales */
     * {
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
     }
     body {
       font-family: 'Montserrat', sans-serif;
-      background-color: #f9f5f1;
+      background-color: var(--color-fondo);
       margin: 0;
       padding: 0;
-      color: #444;
+      color: var(--color-texto);
       -webkit-text-size-adjust: 100%;
+      line-height: 1.5;
     }
     .invitation-container {
       max-width: 100%;
@@ -27,84 +42,91 @@
       background: white;
       min-height: 100vh;
       position: relative;
+      box-shadow: 0 0 20px var(--color-sombra);
     }
     .header-section {
       padding: 20px 15px 0;
-      background: linear-gradient(to bottom, #f9f5f1, white 30%);
+      background: linear-gradient(to bottom, var(--color-fondo), white 30%);
     }
     .communion-image {
       width: 85%;
       max-width: 280px;
       margin: 0 auto 15px;
       border-radius: 6px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 15px var(--color-sombra);
+      border: 1px solid var(--color-borde);
     }
     .invitation-heading {
       font-size: 14px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: #8e6c88;
+      color: var(--color-secundario);
       margin-bottom: 5px;
-    }
-    .first-word {
-      font-family: 'Parisienne', cursive;
-      font-size: 50px;
-      color: #8e6c88;
-      line-height: 1;
-      display: block;
-    }
-    .second-word {
-      font-family: 'Parisienne', cursive;
-      font-size: 36px;
-      color: #8e6c88;
-      margin-top: -8px;
-      display: block;
+      font-weight: 500;
     }
     .child-name {
       font-family: 'Parisienne', cursive;
       font-size: 48px;
-      color: #8e6c88;
+      color: var(--color-primario);
       margin: 5px 0 10px;
       line-height: 1.1;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
     }
     .event-date {
       font-size: 15px;
       text-transform: uppercase;
       font-weight: 500;
-      color: #5a4a5a;
+      color: var(--color-texto);
       padding: 12px 0;
-      border-top: 1px solid #f0e6d6;
-      border-bottom: 1px solid #f0e6d6;
+      border-top: 1px solid var(--color-borde);
+      border-bottom: 1px solid var(--color-borde);
       max-width: 90%;
       margin: 20px auto;
       letter-spacing: 0.5px;
+      background-color: rgba(255,255,255,0.7);
     }
     .event-card {
       max-width: 90%;
       margin: 15px auto;
       padding: 15px 0;
-      background: rgba(240,230,214,0.15);
-      border-top: 1px solid #f0e6d6;
-      border-bottom: 1px solid #f0e6d6;
+      border-top: 1px solid var(--color-borde);
+      border-bottom: 1px solid var(--color-borde);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px var(--color-sombra);
+    }
+    /* Estilo específico para la ceremonia */
+    .event-card:first-of-type {
+      background-color: var(--color-secundario);
+      color: white;
+    }
+    .event-card:first-of-type .event-type,
+    .event-card:first-of-type .event-time,
+    .event-card:first-of-type .event-location {
+      color: white;
+    }
+    .event-card:first-of-type .map-button {
+      background-color: white;
+      color: var(--color-secundario);
     }
     .event-type {
       font-weight: 600;
       font-size: 14px;
-      color: #3a2e3a;
+      color: var(--color-primario);
       margin-bottom: 3px;
     }
     .event-time {
       font-size: 14px;
-      color: #5a5a5a;
+      color: var(--color-texto);
       margin-bottom: 5px;
     }
     .event-location {
       font-style: italic;
       font-size: 13px;
-      color: #777;
+      color: var(--color-texto-claro);
       margin-bottom: 12px;
       line-height: 1.4;
       white-space: pre-line;
+      padding: 0 15px;
     }
     .map-button, .confirm-button {
       padding: 12px 25px;
@@ -118,21 +140,26 @@
       display: inline-block;
       width: auto;
       min-width: 180px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     .map-button {
-      background-color: rgba(107, 142, 122, 0.9);
+      background-color: var(--color-boton);
       color: white;
     }
     .confirm-button {
-      background-color: rgba(142, 108, 136, 0.9);
+      background-color: var(--color-primario);
       color: white;
       margin-bottom: 30px;
     }
+    .map-button:hover, .confirm-button:hover {
+      background-color: var(--color-boton-hover);
+      transform: translateY(-1px);
+    }
     .map-button:active, .confirm-button:active {
-      transform: scale(0.96);
+      transform: translateY(1px);
     }
     
-    /* Estilos del modal ultra compacto */
+    /* Estilos del modal */
     .modal {
       position: fixed;
       top: 0;
@@ -154,14 +181,14 @@
     }
     .modal-content {
       background: white;
-      padding: 18px;
+      padding: 20px;
       border-radius: 12px;
       width: 90%;
-      max-width: 280px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 300px;
+      box-shadow: 0 5px 15px var(--color-sombra);
       text-align: center;
       font-family: 'Montserrat', sans-serif;
-      border-top: 3px solid #8e6c88;
+      border-top: 4px solid var(--color-primario);
       position: relative;
       transform: translateY(20px);
       transition: transform 0.3s ease;
@@ -171,25 +198,29 @@
     }
     .close-modal {
       position: absolute;
-      top: 8px;
-      right: 8px;
-      font-size: 18px;
-      color: #8e6c88;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      color: var(--color-primario);
       cursor: pointer;
       background: none;
       border: none;
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 0;
+      transition: color 0.2s;
+    }
+    .close-modal:hover {
+      color: var(--color-secundario);
     }
     .modal-title {
       margin-bottom: 15px;
       font-family: 'Parisienne', cursive;
-      font-size: 22px;
-      color: #8e6c88;
+      font-size: 24px;
+      color: var(--color-primario);
     }
     .form-group {
       margin-bottom: 15px;
@@ -197,35 +228,36 @@
     }
     .form-label {
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
       font-size: 13px;
-      color: #5a4a5a;
+      color: var(--color-texto);
       font-weight: 500;
     }
     .modal-content input {
       width: 100%;
-      background-color: #f9f5f1;
-      border: 1px solid #e0d5c8;
+      background-color: var(--color-fondo);
+      border: 1px solid var(--color-borde);
       border-radius: 6px;
       padding: 12px 15px;
       font-family: 'Montserrat', sans-serif;
       margin-bottom: 10px;
       font-size: 14px;
       -webkit-appearance: none;
+      transition: border 0.3s;
     }
     .modal-content input:focus {
       outline: none;
-      border-color: #8e6c88;
-      box-shadow: 0 0 0 2px rgba(142, 108, 136, 0.2);
+      border-color: var(--color-primario);
+      box-shadow: 0 0 0 2px rgba(122, 90, 128, 0.2);
     }
     .modal-content input::placeholder {
-      color: #5a4a5a;
-      opacity: 0.8;
+      color: var(--color-texto-claro);
+      opacity: 0.7;
     }
     .success {
       font-family: 'Parisienne', cursive;
-      font-size: 20px;
-      color: #8e6c88;
+      font-size: 22px;
+      color: var(--color-primario);
       margin: 15px 0;
       text-align: center;
       display: none;
@@ -238,10 +270,13 @@
       cursor: pointer;
       border: none;
       transition: all 0.3s ease;
-      background-color: rgba(142, 108, 136, 0.9);
+      background-color: var(--color-primario);
       color: white;
       font-weight: 500;
       margin-top: 5px;
+    }
+    .submit-btn:hover {
+      background-color: var(--color-boton-hover);
     }
     .submit-btn:active {
       transform: scale(0.98);
@@ -251,13 +286,21 @@
       width: 24px;
       height: 24px;
       margin: 10px auto;
-      border: 3px solid rgba(142, 108, 136, 0.3);
+      border: 3px solid rgba(122, 90, 128, 0.3);
       border-radius: 50%;
-      border-top-color: #8e6c88;
+      border-top-color: var(--color-primario);
       animation: spin 1s ease-in-out infinite;
     }
     @keyframes spin {
       to { transform: rotate(360deg); }
+    }
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--color-texto-claro);
+      padding: 15px 0;
+      background-color: white;
+      border-top: 1px solid var(--color-borde);
     }
   </style>
 </head>
@@ -265,16 +308,16 @@
   <div class="invitation-container">
     <div class="header-section">
       <div class="invitation-heading">Acompáñame a celebrar</div>
-      <img src="https://i.ibb.co/cX7JyG4r/Chat-GPT-Image-5-ago-2025-09-04-04-p-m.png" alt="Jimena en su Primera Comunión" class="communion-image" />
-      <div class="child-name">Maria Del Carmen </span> Ayala Zavala</div>
+      <img src="https://i.ibb.co/cX7JyG4r/Chat-GPT-Image-5-ago-2025-09-04-04-p-m.png" alt="Maria Del Carmen en su Primera Comunión" class="communion-image" />
+      <div class="child-name">Maria Del Carmen <br>Ayala Zavala</div>
     </div>
     <div class="content-section">
-      <div class="event-date">Sábado 26 de Julio de 2025</div>
+      <div class="event-date">Sábado 18 de Octubre de 2025</div>
 
       <!-- Ceremonia -->
       <div class="event-card">
         <div class="event-type">Ceremonia</div>
-        <div class="event-time">13:00 hrs</div>
+        <div class="event-time">12:00 hrs</div>
         <div class="event-location">
           Parroquia Nuestra Señora de Guadalupe<br />
           Estrella 38, San Juan Xalpa,<br />
@@ -285,16 +328,16 @@
         </a>
       </div>
 
-      <!-- Recepción -->
+      <!-- Recepción con nueva dirección -->
       <div class="event-card">
         <div class="event-type">Recepción</div>
-        <div class="event-time">15:00 hrs</div>
+        <div class="event-time">13:30 hrs</div>
         <div class="event-location">
-          Salón de Fiestas "El Arca de los Niños"<br />
-          5 de Mayo núm. 31, Col. Los Reyes Culhuacán,<br />
-          Iztapalapa, Ciudad de México, CDMX
+          Comunidad Teológica de México<br />
+          San Jerónimo, Eje 10 Sur 137, Loreto y Campamento<br />
+          Álvaro Obregón, 01000 Ciudad de México, CDMX
         </div>
-        <a class="map-button" href="#" onclick="getLocationAndNavigate('El Arca de los Niños, 5 de Mayo núm. 31, Col. Los Reyes Culhuacán, Iztapalapa, Ciudad de México, CDMX', event)">
+        <a class="map-button" href="#" onclick="getLocationAndNavigate('Eje 10 Sur 137, Loreto y Campamento, Álvaro Obregón, 01000 Ciudad de México, CDMX', event)">
           Cómo llegar
         </a>
       </div>
@@ -462,7 +505,7 @@
       });
     });
   </script>
-  <footer style="text-align:center; font-size:12px; color:#999; padding:10px 0;">
+  <footer>
     Versión 1 - 05 de Agosto de 2025
   </footer>
 </body>
