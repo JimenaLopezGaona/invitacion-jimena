@@ -197,11 +197,16 @@
       border-top: 4px solid var(--color-primario);
       position: relative;
       transform: translateY(20px);
-      transition: transform 0.3s ease;
+      animation: slideUp 0.3s ease;
     }
 
     .modal.active .modal-content {
       transform: translateY(0);
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     .close-modal {
@@ -319,20 +324,20 @@
 
   <div id="rsvpModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-content">
-      <button class="close-modal" onclick="closeModal()">&times;</button>
+      <button class="close-modal" onclick="closeModal()" aria-label="Cerrar modal">&times;</button>
       <div class="modal-title" id="modalTitle">Confirma tu asistencia</div>
       <form id="rsvpForm">
         <div class="form-group">
           <label class="form-label" for="name">Nombre(s) y apellido(s):</label>
-          <input type="text" id="name" required />
+          <input type="text" id="name" required aria-label="Nombre completo" />
         </div>
         <div class="form-group">
           <label class="form-label" for="adults">Número de adultos:</label>
-          <input type="number" id="adults" min="1" value="1" required />
+          <input type="number" id="adults" min="1" value="1" required aria-label="Número de adultos" />
         </div>
         <div class="form-group">
           <label class="form-label" for="children">Número de niños:</label>
-          <input type="number" id="children" min="0" value="0" required />
+          <input type="number" id="children" min="0" value="0" required aria-label="Número de niños" />
         </div>
         <button type="submit" class="submit-btn">Enviar confirmación</button>
         <div class="loading-spinner" id="loadingSpinner"></div>
@@ -384,7 +389,7 @@
       const adults = parseInt(document.getElementById("adults").value);
       const children = parseInt(document.getElementById("children").value);
 
-      if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(name)) {
+      if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s\-']+$/.test(name)) {
         return alert("Por favor ingresa un nombre válido.");
       }
 
@@ -411,8 +416,14 @@
         });
     });
   </script>
+
   <footer>
-    Versión 1.1.0 - 05 de Agosto de 2025
+    Versión 1.1.0
   </footer>
+  <script>
+    const hoy = new Date();
+    const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+    document.querySelector('footer').innerHTML += ` - Actualizado: ${hoy.toLocaleDateString("es-MX", opciones)}`;
+  </script>
 </body>
 </html>
