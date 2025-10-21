@@ -8,12 +8,13 @@
   <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3b/Batman_logo.svg" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet" />
+
   <style>
     :root {
-      --color-primario: #000000;
-      --color-secundario: #ffce00;
-      --color-terciario: #1a1a1a;
-      --color-fondo: #0d0d0d;
+      --color-primario: #000000;       /* negro Batman */
+      --color-secundario: #ffce00;     /* amarillo dorado */
+      --color-terciario: #1a1a1a;      /* gris oscuro */
+      --color-fondo: #0d0d0d;          /* fondo casi negro */
       --color-texto: #f1f1f1;
       --color-texto-claro: #c9c9c9;
       --color-borde: #2a2a2a;
@@ -21,36 +22,252 @@
       --color-boton: #ffce00;
       --color-boton-hover: #e0b800;
     }
-    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
     body {
       font-family: 'Montserrat', sans-serif;
       background-color: var(--color-fondo);
       background-image: radial-gradient(circle at top left, #1a1a1a 0%, #000000 100%);
-      margin: 0; padding: 0; color: var(--color-texto); line-height: 1.5;
+      margin: 0;
+      padding: 0;
+      color: var(--color-texto);
+      line-height: 1.5;
     }
-    .invitation-container { max-width: 100%; margin: 0 auto; text-align: center; background: var(--color-terciario); min-height: 100vh; box-shadow: 0 0 20px var(--color-sombra); }
-    .header-section { padding: 20px 15px 0; background: linear-gradient(to bottom, #000000 0%, #1a1a1a 80%); }
-    .communion-image { width: 100%; max-width: 500px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--color-secundario); }
-    .event-date { font-size: 16px; font-weight: 600; color: var(--color-texto); border-top: 2px solid var(--color-secundario); border-bottom: 2px solid var(--color-secundario); margin: 20px auto; width: 90%; border-radius: 8px; padding: 12px 0; background-color: #111; }
-    .event-card { max-width: 90%; margin: 15px auto; padding: 15px 0; border: 1px solid var(--color-borde); border-radius: 10px; background-color: #0d0d0d; box-shadow: 0 0 15px var(--color-sombra); }
-    .event-type { color: var(--color-secundario); font-weight: 600; }
-    .event-time, .event-location { color: var(--color-texto-claro); }
-    .map-button, .confirm-button { padding: 12px 25px; border-radius: 25px; font-weight: 600; cursor: pointer; border: none; margin: 10px auto; display: inline-block; min-width: 180px; box-shadow: 0 0 10px rgba(255,206,0,0.3); text-transform: uppercase; }
-    .map-button { background-color: var(--color-boton); color: #000; }
-    .confirm-button { background-color: var(--color-secundario); color: #000; margin-bottom: 30px; }
-    .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 1000; }
-    .modal.active { opacity: 1; pointer-events: all; }
-    .modal-content { background: #111; padding: 20px; border-radius: 12px; border: 2px solid var(--color-secundario); width: 90%; max-width: 320px; text-align: center; position: relative; }
-    .close-modal { position: absolute; top: 10px; right: 10px; background: none; border: none; color: var(--color-secundario); font-size: 24px; cursor: pointer; }
-    .submit-btn { background-color: var(--color-secundario); color: #000; border: none; padding: 10px; border-radius: 20px; width: 100%; font-weight: 600; text-transform: uppercase; }
-    footer { text-align: center; font-size: 12px; color: var(--color-texto-claro); padding: 15px 0; background-color: #000; border-top: 2px solid var(--color-secundario); }
+
+    .invitation-container {
+      max-width: 100%;
+      margin: 0 auto;
+      text-align: center;
+      background: var(--color-terciario);
+      min-height: 100vh;
+      box-shadow: 0 0 20px var(--color-sombra);
+    }
+
+    .header-section {
+      padding: 20px 15px 0;
+      background: linear-gradient(to bottom, #000000 0%, #1a1a1a 80%);
+    }
+
+    .communion-image {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      margin: 0 auto 20px;
+      display: block;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 0 20px var(--color-sombra);
+      border: 2px solid var(--color-secundario);
+    }
+
+    .invitation-heading {
+      font-size: 16px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-secundario);
+      margin-bottom: 5px;
+      font-weight: 600;
+      text-shadow: 0 0 6px rgba(255, 206, 0, 0.5);
+    }
+
+    .child-name {
+      font-family: 'Parisienne', cursive;
+      font-size: 50px;
+      color: var(--color-secundario);
+      margin: 10px 0;
+      text-shadow: 0 0 8px rgba(255, 206, 0, 0.6);
+    }
+
+    .event-date {
+      font-size: 16px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--color-texto);
+      padding: 12px 0;
+      border-top: 2px solid var(--color-secundario);
+      border-bottom: 2px solid var(--color-secundario);
+      background-color: #111;
+      margin: 20px auto;
+      width: 90%;
+      border-radius: 8px;
+    }
+
+    .event-card {
+      max-width: 90%;
+      margin: 15px auto;
+      padding: 15px 0;
+      border: 1px solid var(--color-borde);
+      border-radius: 10px;
+      background-color: #0d0d0d;
+      box-shadow: 0 0 15px var(--color-sombra);
+    }
+
+    .event-type {
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--color-secundario);
+      margin-bottom: 3px;
+      letter-spacing: 1px;
+    }
+
+    .event-time {
+      font-size: 14px;
+      color: var(--color-texto);
+      margin-bottom: 5px;
+    }
+
+    .event-location {
+      font-style: italic;
+      font-size: 13px;
+      color: var(--color-texto-claro);
+      margin-bottom: 12px;
+      line-height: 1.5;
+      white-space: pre-line;
+      padding: 0 15px;
+    }
+
+    .map-button, .confirm-button {
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+      margin: 10px auto;
+      display: inline-block;
+      min-width: 180px;
+      box-shadow: 0 0 10px rgba(255, 206, 0, 0.3);
+      text-transform: uppercase;
+    }
+
+    .map-button {
+      background-color: var(--color-boton);
+      color: #000;
+    }
+
+    .confirm-button {
+      background-color: var(--color-secundario);
+      color: #000;
+      margin-bottom: 30px;
+    }
+
+    .map-button:hover, .confirm-button:hover {
+      background-color: var(--color-boton-hover);
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 206, 0, 0.5);
+    }
+
+    .modal {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-content {
+      background: #111;
+      padding: 20px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 320px;
+      box-shadow: 0 0 20px var(--color-sombra);
+      text-align: center;
+      border: 2px solid var(--color-secundario);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      color: var(--color-secundario);
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .modal-title {
+      font-size: 16px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-secundario);
+      margin-bottom: 5px;
+      font-weight: 600;
+      text-shadow: 0 0 6px rgba(255, 206, 0, 0.5);
+    }
+
+    .form-label {
+      color: var(--color-texto);
+      font-size: 14px;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      background-color: #222;
+      color: white;
+      border: 1px solid var(--color-borde);
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 12px;
+    }
+
+    input:focus {
+      outline: 2px solid var(--color-secundario);
+    }
+
+    .submit-btn {
+      width: 100%;
+      background-color: var(--color-secundario);
+      color: black;
+      font-weight: 600;
+      border: none;
+      border-radius: 20px;
+      padding: 10px;
+      text-transform: uppercase;
+      box-shadow: 0 0 10px rgba(255, 206, 0, 0.4);
+    }
+
+    .success {
+      display: none;
+      font-family: 'Parisienne', cursive;
+      font-size: 22px;
+      color: var(--color-secundario);
+      text-shadow: 0 0 5px rgba(255, 206, 0, 0.5);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--color-texto-claro);
+      padding: 15px 0;
+      background-color: #000;
+      border-top: 2px solid var(--color-secundario);
+    }
   </style>
 </head>
 
 <body>
   <div class="invitation-container">
     <div class="header-section">
-      <img src="https://i.ibb.co/wFVHyPtL/04476d50-b059-4919-b8dc-81ac6d097f40.jpg" alt="Julianchis y Elías" class="communion-image" />
+      <img src="https://i.ibb.co/wFVHyPtL/04476d50-b059-4919-b8dc-81ac6d097f40.jpg" alt="Batman Theme" class="communion-image" />
     </div>
 
     <div class="event-date">Sábado 22 de Noviembre de 2025</div>
@@ -59,85 +276,46 @@
       <div class="event-type">¿A Qué Hora?</div>
       <div class="event-time">14:30 hrs</div>
       <div class="event-type">¿Dónde?</div>
-      <div class="event-time">Monas Fun &amp; Food Coapa</div>
-      <div class="event-location">Canal de Miramontes 3010, Coapa,<br>Alianza Popular Revolucionaria, Coyoacán, CDMX</div>
-      <a class="map-button" href="https://maps.app.goo.gl/frCFEBfXq3JoSasw8" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
+      <div class="event-time">Monas Fun & Food Coapa</div>
+      <div class="event-location">Canal de Miramontes 3010, Coapa, <br />Alianza Popular Revolucionaria, <br />Coyoacán, 04800 CDMX</div>
+      <a class="map-button" href="https://maps.app.goo.gl/frCFEBfXq3JoSasw8" target="_blank">Cómo llegar</a>
     </div>
 
     <button class="confirm-button" onclick="openModal()">Confirma asistencia</button>
   </div>
 
-  <div id="rsvpModal" class="modal" role="dialog" aria-modal="true">
+  <div id="rsvpModal" class="modal">
     <div class="modal-content">
-      <button class="close-modal" onclick="closeModal()" aria-label="Cerrar">&times;</button>
-      <h2 class="modal-title">Confirma tu asistencia</h2>
+      <button class="close-modal" onclick="closeModal()">&times;</button>
+      <div class="modal-title">Confirma tu asistencia</div>
       <form id="rsvpForm">
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" required />
-        <label for="adults">Adultos:</label>
-        <input type="number" id="adults" name="adults" min="1" value="1" required />
-        <label for="children">Niños:</label>
-        <input type="number" id="children" name="children" min="0" value="0" required />
+        <label class="form-label" for="name">Nombre:</label>
+        <input type="text" id="name" required />
+        <label class="form-label" for="adults">Adultos:</label>
+        <input type="number" id="adults" min="1" value="1" required />
+        <label class="form-label" for="children">Niños:</label>
+        <input type="number" id="children" min="0" value="0" required />
         <button type="submit" class="submit-btn">Enviar</button>
       </form>
       <div class="success" id="thankYouMessage">¡Gracias por confirmar!</div>
     </div>
   </div>
 
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyAG1fFh_ZwN4hSYe-1v-yxqsW4WWjyjkl4",
-      authDomain: "confirmaciones-jimena.firebaseapp.com",
-      projectId: "confirmaciones-jimena",
-      storageBucket: "confirmaciones-jimena.appspot.com",
-      messagingSenderId: "669569632299",
-      appId: "1:669569632299:web:6d64c8d1f476582817826e",
-      measurementId: "G-JY78XDX885",
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-
     function openModal() {
-      document.getElementById("rsvpModal").classList.add("active");
+      document.getElementById('rsvpModal').classList.add('active');
     }
     function closeModal() {
-      document.getElementById("rsvpModal").classList.remove("active");
+      document.getElementById('rsvpModal').classList.remove('active');
     }
-
-    document.getElementById("rsvpForm").addEventListener("submit", function(e) {
+    document.getElementById('rsvpForm').addEventListener('submit', e => {
       e.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      const adults = parseInt(document.getElementById("adults").value);
-      const children = parseInt(document.getElementById("children").value);
-
-      // ✅ Validaciones solicitadas
-      if (name.length < 3) return alert("Por favor ingresa tu nombre completo");
-      if (adults < 1) return alert("Debe haber al menos 1 adulto");
-      if (children < 0) return alert("El número de niños no puede ser negativo");
-
-      db.collection("confirmaciones")
-        .add({
-          nombre: name,
-          adultos: adults,
-          ninos: children,
-          fecha: new Date().toLocaleString("es-MX"),
-          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        })
-        .then(() => {
-          document.getElementById("rsvpForm").style.display = "none";
-          document.getElementById("thankYouMessage").style.display = "block";
-          setTimeout(closeModal, 1500);
-        })
-        .catch((error) => {
-          alert("Ocurrió un error al guardar. Intenta nuevamente.");
-          console.error("Error al guardar en Firebase:", error);
-        });
+      document.getElementById('rsvpForm').style.display = 'none';
+      document.getElementById('thankYouMessage').style.display = 'block';
+      setTimeout(closeModal, 1500);
     });
   </script>
 
-  <footer>Versión 1.0.10</footer>
+  <footer>Versión 1.0.8</footer>
 </body>
 </html>
