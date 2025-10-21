@@ -23,251 +23,104 @@
       --color-boton-hover: #e0b800;
     }
 
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     body {
       font-family: 'Montserrat', sans-serif;
       background-color: var(--color-fondo);
       background-image: radial-gradient(circle at top left, #1a1a1a 0%, #000000 100%);
-      margin: 0;
-      padding: 0;
-      color: var(--color-texto);
-      line-height: 1.5;
+      margin: 0; padding: 0; color: var(--color-texto); line-height: 1.5;
     }
 
     .invitation-container {
-      max-width: 100%;
-      margin: 0 auto;
-      text-align: center;
-      background: var(--color-terciario);
-      min-height: 100vh;
-      box-shadow: 0 0 20px var(--color-sombra);
+      max-width: 100%; margin: 0 auto; text-align: center;
+      background: var(--color-terciario); min-height: 100vh; box-shadow: 0 0 20px var(--color-sombra);
     }
 
-    .header-section {
-      padding: 20px 15px 0;
-      background: linear-gradient(to bottom, #000000 0%, #1a1a1a 80%);
-    }
+    .header-section { padding: 20px 15px 0; background: linear-gradient(to bottom, #000000 0%, #1a1a1a 80%); }
 
     .communion-image {
-      width: 100%;
-      max-width: 500px;
-      height: auto;
-      margin: 0 auto 20px;
-      display: block;
-      border-radius: 12px;
-      object-fit: cover;
-      box-shadow: 0 0 20px var(--color-sombra);
-      border: 2px solid var(--color-secundario);
+      width: 100%; max-width: 500px; height: auto; margin: 0 auto 20px; display: block;
+      border-radius: 12px; object-fit: cover; box-shadow: 0 0 20px var(--color-sombra); border: 2px solid var(--color-secundario);
     }
 
-    .invitation-heading {
-      font-size: 16px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--color-secundario);
-      margin-bottom: 5px;
-      font-weight: 600;
-      text-shadow: 0 0 6px rgba(255, 206, 0, 0.5);
-    }
+    .invitation-heading { font-size: 16px; letter-spacing: 2px; text-transform: uppercase; color: var(--color-secundario); margin-bottom: 5px; font-weight: 600; text-shadow: 0 0 6px rgba(255,206,0,0.5); }
 
-    .child-name {
-      font-family: 'Parisienne', cursive;
-      font-size: 50px;
-      color: var(--color-secundario);
-      margin: 10px 0;
-      text-shadow: 0 0 8px rgba(255, 206, 0, 0.6);
-    }
+    .child-name { font-family: 'Parisienne', cursive; font-size: 50px; color: var(--color-secundario); margin: 10px 0; text-shadow: 0 0 8px rgba(255,206,0,0.6); }
 
     .event-date {
-      font-size: 16px;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: var(--color-texto);
-      padding: 12px 0;
-      border-top: 2px solid var(--color-secundario);
-      border-bottom: 2px solid var(--color-secundario);
-      background-color: #111;
-      margin: 20px auto;
-      width: 90%;
-      border-radius: 8px;
+      font-size: 16px; text-transform: uppercase; font-weight: 600; color: var(--color-texto);
+      padding: 12px 0; border-top: 2px solid var(--color-secundario); border-bottom: 2px solid var(--color-secundario);
+      background-color: #111; margin: 20px auto; width: 90%; border-radius: 8px;
     }
 
     .event-card {
-      max-width: 90%;
-      margin: 15px auto;
-      padding: 15px 0;
-      border: 1px solid var(--color-borde);
-      border-radius: 10px;
-      background-color: #0d0d0d;
-      box-shadow: 0 0 15px var(--color-sombra);
+      max-width: 90%; margin: 15px auto; padding: 15px 0; border: 1px solid var(--color-borde);
+      border-radius: 10px; background-color: #0d0d0d; box-shadow: 0 0 15px var(--color-sombra);
     }
 
-    .event-type {
-      font-weight: 600;
-      font-size: 16px;
-      color: var(--color-secundario);
-      margin-bottom: 3px;
-      letter-spacing: 1px;
-    }
-
-    .event-time {
-      font-size: 14px;
-      color: var(--color-texto);
-      margin-bottom: 5px;
-    }
-
-    .event-location {
-      font-style: italic;
-      font-size: 13px;
-      color: var(--color-texto-claro);
-      margin-bottom: 12px;
-      line-height: 1.5;
-      white-space: pre-line;
-      padding: 0 15px;
-    }
+    .event-type { font-weight: 600; font-size: 16px; color: var(--color-secundario); margin-bottom: 3px; letter-spacing: 1px; }
+    .event-time { font-size: 14px; color: var(--color-texto); margin-bottom: 5px; }
+    .event-location { font-style: italic; font-size: 13px; color: var(--color-texto-claro); margin-bottom: 12px; line-height: 1.5; white-space: pre-line; padding: 0 15px; }
 
     .map-button, .confirm-button {
-      padding: 12px 25px;
-      font-size: 16px;
-      border-radius: 25px;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      transition: all 0.3s ease;
-      margin: 10px auto;
-      display: inline-block;
-      min-width: 180px;
-      box-shadow: 0 0 10px rgba(255, 206, 0, 0.3);
-      text-transform: uppercase;
+      padding: 12px 25px; font-size: 16px; border-radius: 25px; font-weight: 600; cursor: pointer; border: none;
+      transition: all 0.3s ease; margin: 10px auto; display: inline-block; min-width: 180px;
+      box-shadow: 0 0 10px rgba(255,206,0,0.3); text-transform: uppercase;
     }
 
-    .map-button {
-      background-color: var(--color-boton);
-      color: #000;
-    }
-
-    .confirm-button {
-      background-color: var(--color-secundario);
-      color: #000;
-      margin-bottom: 30px;
-    }
+    .map-button { background-color: var(--color-boton); color: #000; }
+    .confirm-button { background-color: var(--color-secundario); color: #000; margin-bottom: 30px; }
 
     .map-button:hover, .confirm-button:hover {
-      background-color: var(--color-boton-hover);
-      transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(255, 206, 0, 0.5);
+      background-color: var(--color-boton-hover); transform: scale(1.05); box-shadow: 0 0 15px rgba(255,206,0,0.5);
     }
 
+    /* Modal */
     .modal {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center;
+      z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
     }
 
-    .modal.active {
-      opacity: 1;
-      pointer-events: all;
-    }
+    .modal.active { opacity: 1; pointer-events: all; }
 
     .modal-content {
-      background: #111;
-      padding: 20px;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 320px;
-      box-shadow: 0 0 20px var(--color-sombra);
-      text-align: center;
-      border: 2px solid var(--color-secundario);
+      background: #111; padding: 20px; border-radius: 12px; width: 90%; max-width: 320px;
+      box-shadow: 0 0 20px var(--color-sombra); text-align: center; border: 2px solid var(--color-secundario);
+      position: relative;
     }
 
-    .close-modal {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 24px;
-      color: var(--color-secundario);
-      cursor: pointer;
-      background: none;
-      border: none;
-    }
+    .close-modal { position: absolute; top: 10px; right: 10px; font-size: 24px; color: var(--color-secundario); cursor: pointer; background: none; border: none; }
 
-    .modal-title {
-      font-size: 16px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--color-secundario);
-      margin-bottom: 5px;
-      font-weight: 600;
-      text-shadow: 0 0 6px rgba(255, 206, 0, 0.5);
-    }
+    .modal-title { font-size: 16px; letter-spacing: 2px; text-transform: uppercase; color: var(--color-secundario); margin-bottom: 5px; font-weight: 600; text-shadow: 0 0 6px rgba(255,206,0,0.5); }
 
-    .form-label {
-      color: var(--color-texto);
-      font-size: 14px;
-      margin-bottom: 5px;
-      display: block;
-    }
+    .form-label { color: var(--color-texto); font-size: 14px; margin-bottom: 5px; display: block; }
 
     input {
-      width: 100%;
-      background-color: #222;
-      color: white;
-      border: 1px solid var(--color-borde);
-      border-radius: 6px;
-      padding: 10px;
-      margin-bottom: 12px;
+      width: 100%; background-color: #222; color: white; border: 1px solid var(--color-borde); border-radius: 6px; padding: 10px; margin-bottom: 12px;
     }
 
-    input:focus {
-      outline: 2px solid var(--color-secundario);
-    }
+    input:focus { outline: 2px solid var(--color-secundario); }
 
     .submit-btn {
-      width: 100%;
-      background-color: var(--color-secundario);
-      color: black;
-      font-weight: 600;
-      border: none;
-      border-radius: 20px;
-      padding: 10px;
-      text-transform: uppercase;
-      box-shadow: 0 0 10px rgba(255, 206, 0, 0.4);
+      width: 100%; background-color: var(--color-secundario); color: black; font-weight: 600; border: none; border-radius: 20px; padding: 10px; text-transform: uppercase; box-shadow: 0 0 10px rgba(255,206,0,0.4);
     }
 
     .success {
-      display: none;
-      font-family: 'Parisienne', cursive;
-      font-size: 22px;
-      color: var(--color-secundario);
-      text-shadow: 0 0 5px rgba(255, 206, 0, 0.5);
+      display: none; font-family: 'Parisienne', cursive; font-size: 22px; color: var(--color-secundario); text-shadow: 0 0 5px rgba(255,206,0,0.5);
     }
 
-    footer {
-      text-align: center;
-      font-size: 12px;
-      color: var(--color-texto-claro);
-      padding: 15px 0;
-      background-color: #000;
-      border-top: 2px solid var(--color-secundario);
-    }
+    footer { text-align: center; font-size: 12px; color: var(--color-texto-claro); padding: 15px 0; background-color: #000; border-top: 2px solid var(--color-secundario); }
+
+    /* Small helper for focus outline when using keyboard */
+    :focus { outline-offset: 2px; }
   </style>
 </head>
 
 <body>
   <div class="invitation-container">
     <div class="header-section">
-      <img src="https://i.ibb.co/wFVHyPtL/04476d50-b059-4919-b8dc-81ac6d097f40.jpg" alt="Batman Theme" class="communion-image" />
+      <img src="https://i.ibb.co/wFVHyPtL/04476d50-b059-4919-b8dc-81ac6d097f40.jpg" alt="Julianchis y Elías" class="communion-image" />
     </div>
 
     <div class="event-date">Sábado 22 de Noviembre de 2025</div>
@@ -276,46 +129,126 @@
       <div class="event-type">¿A Qué Hora?</div>
       <div class="event-time">14:30 hrs</div>
       <div class="event-type">¿Dónde?</div>
-      <div class="event-time">Monas Fun & Food Coapa</div>
+      <div class="event-time">Monas Fun &amp; Food Coapa</div>
       <div class="event-location">Canal de Miramontes 3010, Coapa, <br />Alianza Popular Revolucionaria, <br />Coyoacán, 04800 CDMX</div>
-      <a class="map-button" href="https://maps.app.goo.gl/frCFEBfXq3JoSasw8" target="_blank">Cómo llegar</a>
+      <a class="map-button" href="https://maps.app.goo.gl/frCFEBfXq3JoSasw8" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
     </div>
 
     <button class="confirm-button" onclick="openModal()">Confirma asistencia</button>
   </div>
 
-  <div id="rsvpModal" class="modal">
-    <div class="modal-content">
-      <button class="close-modal" onclick="closeModal()">&times;</button>
-      <div class="modal-title">Confirma tu asistencia</div>
+  <!-- Modal: se añadieron atributos ARIA, focus management y focus trap -->
+  <div id="rsvpModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-content" role="document">
+      <button class="close-modal" id="closeModalBtn" aria-label="Cerrar diálogo">&times;</button>
+      <div class="modal-title" id="modalTitle">Confirma tu asistencia</div>
       <form id="rsvpForm">
         <label class="form-label" for="name">Nombre:</label>
-        <input type="text" id="name" required />
+        <input type="text" id="name" name="name" required autocomplete="name" />
+
         <label class="form-label" for="adults">Adultos:</label>
-        <input type="number" id="adults" min="1" value="1" required />
+        <input type="number" id="adults" name="adults" min="1" value="1" required />
+
         <label class="form-label" for="children">Niños:</label>
-        <input type="number" id="children" min="0" value="0" required />
+        <input type="number" id="children" name="children" min="0" value="0" required />
+
         <button type="submit" class="submit-btn">Enviar</button>
       </form>
-      <div class="success" id="thankYouMessage">¡Gracias por confirmar!</div>
+      <div class="success" id="thankYouMessage" role="status" aria-live="polite">¡Gracias por confirmar!</div>
     </div>
   </div>
 
   <script>
-    function openModal() {
-      document.getElementById('rsvpModal').classList.add('active');
-    }
-    function closeModal() {
-      document.getElementById('rsvpModal').classList.remove('active');
-    }
-    document.getElementById('rsvpForm').addEventListener('submit', e => {
-      e.preventDefault();
-      document.getElementById('rsvpForm').style.display = 'none';
-      document.getElementById('thankYouMessage').style.display = 'block';
-      setTimeout(closeModal, 1500);
-    });
+    (function () {
+      const modal = document.getElementById('rsvpModal');
+      const openBtn = document.querySelector('.confirm-button');
+      const closeBtn = document.getElementById('closeModalBtn');
+      const form = document.getElementById('rsvpForm');
+      const thankYou = document.getElementById('thankYouMessage');
+      const firstFocusableSelector = 'input, button, [href], select, textarea, [tabindex]:not([tabindex="-1"])';
+      let previouslyFocused = null;
+
+      function getFocusableElements(container) {
+        return Array.from(container.querySelectorAll(firstFocusableSelector)).filter(el => !el.hasAttribute('disabled') && el.offsetParent !== null);
+      }
+
+      function openModal() {
+        previouslyFocused = document.activeElement;
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        // focus first input
+        const focusables = getFocusableElements(modal);
+        if (focusables.length) focusables[0].focus();
+        // attach keydown listener for focus trap & ESC
+        document.addEventListener('keydown', handleKeyDown);
+      }
+
+      function closeModal() {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        // restore focus
+        if (previouslyFocused && previouslyFocused.focus) previouslyFocused.focus();
+        // cleanup
+        document.removeEventListener('keydown', handleKeyDown);
+        // reset form UI after close (allow re-open)
+        form.style.display = '';
+        thankYou.style.display = 'none';
+        form.reset();
+      }
+
+      function handleKeyDown(e) {
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          closeModal();
+          return;
+        }
+        if (e.key === 'Tab') {
+          // focus trap
+          const focusables = getFocusableElements(modal);
+          if (!focusables.length) return;
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+          if (e.shiftKey) {
+            if (document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            }
+          } else {
+            if (document.activeElement === last) {
+              e.preventDefault();
+              first.focus();
+            }
+          }
+        }
+      }
+
+      // open/close bindings
+      openBtn.addEventListener('click', openModal);
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal(); // click backdrop to close
+      });
+
+      // form submit (UI-only, server not implemented)
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // minimal client validation example
+        const name = document.getElementById('name').value.trim();
+        if (!name) {
+          alert('Ingresa tu nombre');
+          document.getElementById('name').focus();
+          return;
+        }
+        form.style.display = 'none';
+        thankYou.style.display = 'block';
+        // keep aria-live announcement for screen readers
+        setTimeout(closeModal, 1500);
+      });
+    })();
   </script>
 
-  <footer>Versión 1.0.8</footer>
+  <footer>Versión 1.0.9</footer>
 </body>
 </html>
