@@ -157,8 +157,9 @@
     }
 
     .modal-content {
+      position: relative;
       background: #111;
-      padding: 20px;
+      padding: 30px 20px 20px;
       border-radius: 12px;
       width: 90%;
       max-width: 320px;
@@ -171,11 +172,15 @@
       position: absolute;
       top: 10px;
       right: 10px;
+      transform: translate(0, 0);
       font-size: 24px;
       color: var(--color-secundario);
       cursor: pointer;
       background: none;
       border: none;
+      padding: 5px;
+      line-height: 1;
+      z-index: 2;
     }
 
     .form-label {
@@ -253,7 +258,7 @@
 
   <div id="rsvpModal" class="modal">
     <div class="modal-content">
-      <button class="close-modal" onclick="closeModal()">&times;</button>
+      <button class="close-modal" onclick="closeModal()" aria-label="Cerrar">&times;</button>
       <div class="modal-title">Confirma tu asistencia</div>
       <form id="rsvpForm">
         <label class="form-label" for="name">Nombre:</label>
