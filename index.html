@@ -301,7 +301,23 @@
     </div>
   </div>
 
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
   <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAG1fFh_ZwN4hSYe-1v-yxqsW4WWjyjkl4",
+      authDomain: "confirmaciones-jimena.firebaseapp.com",
+      projectId: "confirmaciones-jimena",
+      storageBucket: "confirmaciones-jimena.appspot.com",
+      messagingSenderId: "669569632299",
+      appId: "1:669569632299:web:6d64c8d1f476582817826e",
+      measurementId: "G-JY78XDX885",
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
     function openModal() {
       document.getElementById('rsvpModal').classList.add('active');
     }
@@ -310,12 +326,38 @@
     }
     document.getElementById('rsvpForm').addEventListener('submit', e => {
       e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const adults = parseInt(document.getElementById("adults").value);
+      const children = parseInt(document.getElementById("children").value);
+
+      // ✅ Validaciones solicitadas
+      if (name.length < 3) return alert("Por favor ingresa tu nombre completo");
+      if (adults < 1) return alert("Debe haber al menos 1 adulto");
+      if (children < 0) return alert("El número de niños no puede ser negativo");
+
+      db.collection("confirmaciones")
+        .add({
+          nombre: name,
+          adultos: adults,
+          ninos: children,
+          fecha: new Date().toLocaleString("es-MX"),
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        })
+        .then(() => {
+          document.getElementById("rsvpForm").style.display = "none";
+          document.getElementById("thankYouMessage").style.display = "block";
+          setTimeout(closeModal, 1500);
+        })
+        .catch((error) => {
+          alert("Ocurrió un error al guardar. Intenta nuevamente.");
+          console.error("Error al guardar en Firebase:", error);
+        });
       document.getElementById('rsvpForm').style.display = 'none';
       document.getElementById('thankYouMessage').style.display = 'block';
       setTimeout(closeModal, 1500);
     });
   </script>
 
-  <footer>Versión 1.0.8</footer>
+  <footer>Versión 1.0.10</footer>
 </body>
 </html>
